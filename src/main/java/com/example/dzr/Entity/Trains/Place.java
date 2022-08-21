@@ -1,12 +1,16 @@
 package com.example.dzr.Entity.Trains;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Place {
 
     @Id
@@ -14,6 +18,10 @@ public class Place {
     private Long id;
 
     private Long place;
+
+    @ManyToOne
+    @JoinColumn(name = "carriageId")
+    private Carriage carriage;
 
     private boolean busy;
 }

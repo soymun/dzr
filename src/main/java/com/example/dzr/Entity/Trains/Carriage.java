@@ -1,9 +1,16 @@
 package com.example.dzr.Entity.Trains;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Carriage {
 
     @Id
@@ -12,7 +19,6 @@ public class Carriage {
 
     private Long number;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "carriageId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carriage")
     private List<Place> places;
 }

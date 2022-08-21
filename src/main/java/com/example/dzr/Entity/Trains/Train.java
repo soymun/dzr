@@ -1,11 +1,17 @@
 package com.example.dzr.Entity.Trains;
 
 import com.example.dzr.Entity.Trains.Carriage;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Train {
 
     @Id
