@@ -1,9 +1,6 @@
 package com.example.dzr.Service.IMP;
 
 import com.example.dzr.DTO.AddPersonTicketDTO;
-import com.example.dzr.DTO.CreateTicketDTO;
-import com.example.dzr.Entity.Trains.Place;
-import com.example.dzr.Entity.Trains.Train;
 import com.example.dzr.Entity.Users.Person;
 import com.example.dzr.Entity.Users.Ticket;
 import com.example.dzr.Entity.Users.User;
@@ -37,19 +34,6 @@ public class TicketServiceImp implements TicketService {
         this.ticketRepository = ticketRepository;
         this.personRepository = personRepository;
     }
-
-    @Override
-    public Ticket addTicket(CreateTicketDTO createTicketDTO) {
-        Ticket ticket = new Ticket();
-        Train train = trainRepository.findTrainById(createTicketDTO.getTrainId());
-        Place place = placeRepository.findPlaceById(createTicketDTO.getPlaceId());
-        ticket.setPlace(place);
-        ticket.setTrain(train);
-        ticket.setPrice(createTicketDTO.getPrice());
-        ticketRepository.save(ticket);
-        return ticket;
-    }
-
     @Override
     public Ticket addPersonTicket(AddPersonTicketDTO addPersonTicketDTO) {
         Ticket ticket = ticketRepository.findTicketById(addPersonTicketDTO.getTicketId());

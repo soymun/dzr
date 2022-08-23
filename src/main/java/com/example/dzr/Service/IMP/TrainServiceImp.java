@@ -6,6 +6,7 @@ import com.example.dzr.Entity.Users.Ticket;
 import com.example.dzr.Repository.StationRepository;
 import com.example.dzr.Repository.TrainRepository;
 import com.example.dzr.Service.TrainService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import java.util.List;
 
+@Service
 public class TrainServiceImp implements TrainService {
 
     private final TrainRepository trainRepository;
