@@ -1,7 +1,7 @@
 package com.example.dzr.Service;
 
 import com.example.dzr.DTO.*;
-import com.example.dzr.Entity.Trains.Train;
+import com.example.dzr.Entity.Train;
 
 import java.util.List;
 

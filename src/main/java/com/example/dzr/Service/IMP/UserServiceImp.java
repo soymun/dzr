@@ -2,9 +2,9 @@ package com.example.dzr.Service.IMP;
 
 import com.example.dzr.DTO.CreatePersonDTO;
 import com.example.dzr.DTO.RegistrationDTO;
-import com.example.dzr.Entity.Users.Person;
-import com.example.dzr.Entity.Users.Ticket;
-import com.example.dzr.Entity.Users.User;
+import com.example.dzr.Entity.Person;
+import com.example.dzr.Entity.Ticket;
+import com.example.dzr.Entity.User;
 import com.example.dzr.Repository.UserRepository;
 import com.example.dzr.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,29 +50,19 @@ public class UserServiceImp implements UserService {
     @Override
     public Person createPerson(CreatePersonDTO createPersonDTO) {
         User user = userRepository.findUserById(createPersonDTO.getUserId());
-        Person person = new Person();
-        person.setName(createPersonDTO.getName());
-        person.setSurname(createPersonDTO.getSurname());
-        person.setPatronym(createPersonDTO.getPatronym());
-        person.setBirthday(createPersonDTO.getBirthday());
-        person.setPasport(createPersonDTO.getPasport());
-        user.getPeople().add(person);
-        userRepository.save(user);
-        return person;
+        return null;
     }
 
     @Transactional
     @Override
     public List<Ticket> getAllUserTicket(Long id) {
-        User user = userRepository.findUserById(id);
-        return user.getTickets();
+        return null;
     }
 
     @Transactional
     @Override
     public List<Person> getAllUserPerson(Long id) {
-        User user = userRepository.findUserById(id);
-        return user.getPeople();
+        return null;
     }
 
     @Override

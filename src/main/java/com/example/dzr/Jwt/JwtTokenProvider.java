@@ -1,7 +1,7 @@
 package com.example.dzr.Jwt;
 
 
-import com.example.dzr.Entity.Users.Role;
+import com.example.dzr.Entity.Role;
 import com.example.dzr.Service.IMP.UserServiceImp;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -75,7 +75,7 @@ public class JwtTokenProvider {
     public String resolveToken(HttpServletRequest request){
         String bearer = request.getHeader("Authorization");
         if(bearer != null && bearer.startsWith("Bearer ")){
-            return bearer.substring(7, bearer.length());
+            return bearer.substring(7);
         }
         return null;
     }
@@ -84,8 +84,8 @@ public class JwtTokenProvider {
         try {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
-        } catch (AuthenticationException e){
-            throw new RuntimeException(e);
+        } catch (Exception e){
+            return false;
         }
     }
 }

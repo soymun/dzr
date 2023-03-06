@@ -1,7 +1,7 @@
 package com.example.dzr.Service;
 
 import com.example.dzr.DTO.AddPersonTicketDTO;
-import com.example.dzr.Entity.Users.Ticket;
+import com.example.dzr.Entity.Ticket;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

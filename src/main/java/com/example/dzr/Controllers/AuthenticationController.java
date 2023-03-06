@@ -3,8 +3,8 @@ package com.example.dzr.Controllers;
 
 import com.example.dzr.DTO.LoginDTO;
 import com.example.dzr.DTO.RegistrationDTO;
-import com.example.dzr.Entity.Users.Role;
-import com.example.dzr.Entity.Users.User;
+import com.example.dzr.Entity.Role;
+import com.example.dzr.Entity.User;
 import com.example.dzr.Jwt.JwtTokenProvider;
 import com.example.dzr.Service.IMP.UserServiceImp;
 import org.apache.tomcat.websocket.AuthenticationException;
@@ -66,13 +66,6 @@ public class AuthenticationController {
         } catch (AuthenticationException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @PostMapping("/logout")
-    @PreAuthorize("hasAuthority('Commuter')")
-    public void logout(HttpServletRequest request, HttpServletResponse response,@RequestBody LoginDTO loginDTO){
-        SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
-        securityContextLogoutHandler.logout(request, response, new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
     }
 
     @PostMapping("/registration/guide")

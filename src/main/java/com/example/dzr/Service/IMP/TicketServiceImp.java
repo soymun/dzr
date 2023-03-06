@@ -1,9 +1,9 @@
 package com.example.dzr.Service.IMP;
 
 import com.example.dzr.DTO.AddPersonTicketDTO;
-import com.example.dzr.Entity.Users.Person;
-import com.example.dzr.Entity.Users.Ticket;
-import com.example.dzr.Entity.Users.User;
+import com.example.dzr.Entity.Person;
+import com.example.dzr.Entity.Ticket;
+import com.example.dzr.Entity.User;
 import com.example.dzr.Repository.*;
 import com.example.dzr.Service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +36,7 @@ public class TicketServiceImp implements TicketService {
     }
     @Override
     public Ticket addPersonTicket(AddPersonTicketDTO addPersonTicketDTO) {
-        Ticket ticket = ticketRepository.findTicketById(addPersonTicketDTO.getTicketId());
-        Person person = personRepository.findPersonById(addPersonTicketDTO.getPersonId());
-        User user = userRepository.findUserById(addPersonTicketDTO.getUserId());
-
-        ticket.setPerson(person);
-        ticket.setDateBuy(new Date());
-
-        user.getTickets().add(ticket);
-        userRepository.save(user);
-        return ticket;
+        return null;
     }
 
     @Override

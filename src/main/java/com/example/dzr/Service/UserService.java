@@ -2,9 +2,9 @@ package com.example.dzr.Service;
 
 import com.example.dzr.DTO.CreatePersonDTO;
 import com.example.dzr.DTO.RegistrationDTO;
-import com.example.dzr.Entity.Users.Person;
-import com.example.dzr.Entity.Users.Ticket;
-import com.example.dzr.Entity.Users.User;
+import com.example.dzr.Entity.Person;
+import com.example.dzr.Entity.Ticket;
+import com.example.dzr.Entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

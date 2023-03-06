@@ -1,4 +1,4 @@
-package com.example.dzr.Entity.Users;
+package com.example.dzr.Entity;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
