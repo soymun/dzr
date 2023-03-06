@@ -1,18 +1,22 @@
 package com.example.dzr.Service.IMP;
 
-import com.example.dzr.DTO.*;
-import com.example.dzr.Entity.*;
+import com.example.dzr.DTO.Train.TrainCreateDto;
+import com.example.dzr.DTO.Train.TrainDto;
+import com.example.dzr.DTO.Train.TrainUpdateDto;
 import com.example.dzr.Repository.TrainRepository;
 import com.example.dzr.Service.TrainService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class TrainServiceImp implements TrainService {
 
     private final TrainRepository trainRepository;
@@ -20,38 +24,28 @@ public class TrainServiceImp implements TrainService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public TrainServiceImp(TrainRepository trainRepository) {
-        this.trainRepository = trainRepository;
-    }
-
-    @Transactional
     @Override
-    public Train getTrainById(Long id) {
-        return trainRepository.findTrainById(id);
-    }
-
-    @Override
-    public List<TrainGetDTO> getTrainFromTo(FromToTrainDTO fromToTrainDTO) {
+    public TrainDto saveTrain(TrainCreateDto trainDTO) {
         return null;
     }
 
     @Override
-    public Train saveTrain(TrainDTO trainDTO) {
-        Train train = new Train();
-        train.setName(trainDTO.getName());
-        trainRepository.save(train);
-        return train;
+    public TrainDto updateTrain(TrainUpdateDto trainUpdateDto) {
+        return null;
     }
 
     @Override
-    public Train addCarriageInTrain(Long id, List<AddCarriage> addCarriages) {
-        Train train = trainRepository.findTrainById(id);
-        return train;
+    public void deleteTrain(Long id) {
+
     }
 
     @Override
-    public Train addStation(Long id,List<StationDTO> stationDTO) {
-        Train train = trainRepository.findTrainById(id);
-        return train;
+    public List<TrainDto> getTrainByDayAndFromTo(LocalDateTime day, String from, String to) {
+        return null;
+    }
+
+    @Override
+    public List<TrainDto> getTrainByStationAndDay(Long stationId, LocalDateTime day) {
+        return null;
     }
 }

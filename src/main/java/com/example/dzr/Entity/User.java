@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "person")
 @Getter
 @Setter
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -16,6 +15,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private Boolean activating;
+
+    private String uuid;
 
     private String email;
 

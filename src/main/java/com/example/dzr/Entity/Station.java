@@ -10,9 +10,8 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Station {
 
     @Id

@@ -1,15 +1,16 @@
 package com.example.dzr.Entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Carriage {
 
     @Id
@@ -23,7 +24,8 @@ public class Carriage {
     @Column(name = "train_id")
     private Long trainId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "train_id", insertable = false, updatable = false)
     private Train train;
 }

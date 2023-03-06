@@ -3,10 +3,13 @@ package com.example.dzr.Controllers;
 
 import com.example.dzr.DTO.LoginDTO;
 import com.example.dzr.DTO.RegistrationDTO;
+import com.example.dzr.DTO.UserDto;
 import com.example.dzr.Entity.Role;
 import com.example.dzr.Entity.User;
+import com.example.dzr.Facade.AuthenticationFacade;
 import com.example.dzr.Jwt.JwtTokenProvider;
 import com.example.dzr.Service.IMP.UserServiceImp;
+import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,54 +29,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/v1/rzd")
 public class AuthenticationController {
 
-    private final JwtTokenProvider jwtTokenProvider;
-
-    private final AuthenticationManager authenticationManager;
-
-    private final UserServiceImp userServiceImp;
-
-    @Autowired
-    public AuthenticationController(JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, UserServiceImp userServiceImp) {
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.authenticationManager = authenticationManager;
-        this.userServiceImp = userServiceImp;
-    }
+    private final AuthenticationFacade authenticationFacade;
 
     @PostMapping("/registration")
     public ResponseEntity<?> registrationUser(@RequestBody RegistrationDTO registrationDTO){
-        User user = userServiceImp.getUserByEmail(registrationDTO.getEmail());
-        if(user == null){
-            return ResponseEntity.ok(userServiceImp.saveUser(registrationDTO));
-        }
-        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        return authenticationFacade.registrationUser(registrationDTO);
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO){
-        try{
-            User user = userServiceImp.getUserByEmail(loginDTO.getEmail());
-            if(user == null){
-                throw new AuthenticationException("user not found");
-            }
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-            String token = jwtTokenProvider.createToken(user.getEmail(), user.getRole());
-            Map<Object, Object> map = new HashMap<>();
-            map.put("id", user.getId());
-            map.put("role", user.getRole().getAuthority());
-            map.put("token", token);
-            return ResponseEntity.ok(map);
-        } catch (AuthenticationException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @PostMapping("/registration/guide")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public User registrationGuide(@RequestBody LoginDTO loginDTO){
-        User user = userServiceImp.getUserByEmail(loginDTO.getEmail());
-        user.setRole(Role.Conductor);
-        return userServiceImp.saveGuideUser(user);
+        return authenticationFacade.login(loginDTO);
     }
 }

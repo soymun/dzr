@@ -1,19 +1,25 @@
 package com.example.dzr.Service;
 
 import com.example.dzr.DTO.*;
+import com.example.dzr.DTO.Train.TrainCreateDto;
+import com.example.dzr.DTO.Train.TrainDto;
+import com.example.dzr.DTO.Train.TrainUpdateDto;
 import com.example.dzr.Entity.Train;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TrainService {
 
-    Train getTrainById(Long id);
+    TrainDto saveTrain(TrainCreateDto trainDTO);
 
-    List<TrainGetDTO> getTrainFromTo(FromToTrainDTO fromToTrainDTO);
+    TrainDto updateTrain(TrainUpdateDto trainUpdateDto);
 
-    Train saveTrain(TrainDTO trainDTO);
+    void deleteTrain(Long id);
 
-    Train addCarriageInTrain(Long id, List<AddCarriage> addCarriages);
+    List<TrainDto> getTrainByDayAndFromTo(LocalDateTime day, String from, String to);
 
-    Train addStation(Long id,List<StationDTO> stationDTO);
+    List<TrainDto> getTrainByStationAndDay(Long stationId, LocalDateTime day);
+
+
 }

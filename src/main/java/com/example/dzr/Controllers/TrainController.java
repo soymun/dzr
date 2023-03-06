@@ -26,30 +26,30 @@ public class TrainController {
     @PostMapping("/train/create")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> addTrain(@RequestBody TrainDTO trainDTO){
-        return ResponseEntity.ok(trainServiceImp.saveTrain(trainDTO));
+        return null;
     }
 
     @GetMapping("/train/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getTrainById(@PathVariable Long id){
-        return ResponseEntity.ok(trainServiceImp.getTrainById(id));
+        return null;
     }
 
     @GetMapping("/train/get/from/to")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getTrainFromTo(@RequestBody FromToTrainDTO fromToTrainDTO){
-        return ResponseEntity.ok(trainServiceImp.getTrainFromTo(fromToTrainDTO));
+        return null;
     }
 
     @PostMapping("/train/add/carriage/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> addCarriage(@PathVariable Long id, @RequestBody List<AddCarriage> addCarriage){
-        return ResponseEntity.ok(trainServiceImp.addCarriageInTrain(id, addCarriage));
+        return null;
     }
 
     @PostMapping("/train/add/statison/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> addStation(@PathVariable Long id, @RequestBody List<StationDTO> stationDTOS){
-        return ResponseEntity.ok(trainServiceImp.addStation(id, stationDTOS));
+        return null;
     }
 }

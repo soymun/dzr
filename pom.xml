@@ -15,6 +15,8 @@
     <description>dzr</description>
     <properties>
         <java.version>17</java.version>
+        <mapstruct.version>1.5.2.Final</mapstruct.version>
+        <apache.commons.version>3.12.0</apache.commons.version>
     </properties>
     <dependencies>
         <dependency>
@@ -57,6 +59,23 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.commons.version}</version>
         </dependency>
     </dependencies>
 

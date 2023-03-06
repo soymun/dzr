@@ -25,24 +25,24 @@ public class UserAndPersonController {
     @PostMapping("/person/create")
     @PreAuthorize("hasAuthority('Commuter')")
     public ResponseEntity<?> addPerson(CreatePersonDTO createPersonDTO){
-        return ResponseEntity.ok(userServiceImp.createPerson(createPersonDTO));
+        return null;
     }
 
     @GetMapping("/ticket/user/get/all/{id}")
     @PreAuthorize("hasAuthority('Commuter')")
     public ResponseEntity<?> getTicketList(@PathVariable Long id){
-        return ResponseEntity.ok(userServiceImp.getAllUserTicket(id));
+        return null;
     }
 
     @GetMapping("/person/user/get/all/{id}")
     @PreAuthorize("hasAuthority('Commuter')")
     public ResponseEntity<?> getAllPerson(@PathVariable Long id){
-        return ResponseEntity.ok(userServiceImp.getAllUserPerson(id));
+        return null;
     }
 
     @PostMapping("/person/update")
     @PreAuthorize("hasAuthority('Commuter')")
     public ResponseEntity<?> updatePerson(@RequestBody UpdatePersonDTO updatePersonDTO){
-        return ResponseEntity.ok(personServiceInp.updatePerson(updatePersonDTO));
+        return null;
     }
 }

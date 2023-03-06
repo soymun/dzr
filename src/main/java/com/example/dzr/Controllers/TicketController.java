@@ -20,7 +20,7 @@ public class TicketController {
     @PostMapping("/person/ticket")
     @PreAuthorize("hasAuthority('Commuter')")
     public ResponseEntity<?> addPersonTicket(AddPersonTicketDTO addPersonTicketDTO){
-        return ResponseEntity.ok(ticketServiceImp.addPersonTicket(addPersonTicketDTO));
+        return null;
     }
 
     @GetMapping("/ticket/get/all/{id}")
@@ -32,6 +32,6 @@ public class TicketController {
     @DeleteMapping("/ticket/delete/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteTicket(@PathVariable Long id){
-        ticketServiceImp.deletePersonTicket(id);
+
     }
 }

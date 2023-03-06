@@ -2,6 +2,8 @@ package com.example.dzr.Service;
 
 import com.example.dzr.DTO.CreatePersonDTO;
 import com.example.dzr.DTO.RegistrationDTO;
+import com.example.dzr.DTO.UserDto;
+import com.example.dzr.DTO.UserUpdateDto;
 import com.example.dzr.Entity.Person;
 import com.example.dzr.Entity.Ticket;
 import com.example.dzr.Entity.User;
@@ -11,15 +13,15 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
-    User saveUser(RegistrationDTO registrationDTO);
+    String save(RegistrationDTO registrationDTO);
 
-    Person createPerson(CreatePersonDTO createPersonDTO);
+    UserDto getUserByEmail(String email);
 
-    List<Ticket> getAllUserTicket(Long id);
+    UserDto getUserById(Long id);
 
-    List<Person> getAllUserPerson(Long id);
+    UserDto updateUser(UserUpdateDto userUpdateDto);
 
-    User getUserByEmail(String email);
+    void deleteUser(Long id);
 
-    User saveGuideUser(User user);
+    void activateUser(String uuid);
 }

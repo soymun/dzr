@@ -4,14 +4,14 @@ package com.example.dzr.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Person {
 
     @Id
@@ -31,11 +31,11 @@ public class Person {
 
     private String patronymic;
 
-    private Integer number_passport;
+    private Integer numberPassport;
 
-    private Integer series_passport;
+    private Integer seriesPassport;
 
-    private Date birthday;
+    private LocalDateTime birthday;
 
     private Long balls;
 }
