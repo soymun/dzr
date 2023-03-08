@@ -25,8 +25,6 @@ public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
 
-    private final PasswordEncoder passwordEncoder;
-
     private final UserMapper userMapper;
 
     @Override
@@ -45,7 +43,7 @@ public class UserServiceImp implements UserService {
         log.info("Сохранение пользователя");
         User user = new User();
         user.setEmail(registrationDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
+        user.setPassword(registrationDTO.getPassword());
         user.setRole(Role.USER);
         user.setActivating(false);
         user.setUuid(UUID.randomUUID().toString());
@@ -76,7 +74,7 @@ public class UserServiceImp implements UserService {
             user.setEmail(userUpdateDto.getEmail());
         }
         if (userUpdateDto.getPassword() != null) {
-            user.setPassword(passwordEncoder.encode(userUpdateDto.getPassword()));
+            user.setPassword(userUpdateDto.getPassword());
         }
         if (userUpdateDto.getRole() != null) {
             user.setRole(userUpdateDto.getRole());

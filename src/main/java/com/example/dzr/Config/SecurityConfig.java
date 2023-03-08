@@ -36,7 +36,8 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/login", "/registration").permitAll()
+                .antMatchers("/registration", "/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .apply(new JwtTokenConfig(jwtTokenProvider));
         return httpSecurity.build();

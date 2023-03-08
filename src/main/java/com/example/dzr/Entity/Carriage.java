@@ -24,7 +24,7 @@ public class Carriage {
     @Column(name = "train_id")
     private Long trainId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "train_id", insertable = false, updatable = false)
     private Train train;

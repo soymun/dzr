@@ -17,16 +17,18 @@ public class TrainStation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "train_id")
     private Long trainId;
 
     @ManyToOne
-    @JoinColumn(name = "train_id")
+    @JoinColumn(name = "train_id", insertable = false, updatable = false)
     private Train train;
 
+    @Column(name = "station_id")
     private Long stationId;
 
     @ManyToOne
-    @JoinColumn(name = "station_id")
+    @JoinColumn(name = "station_id", insertable = false, updatable = false)
     private Station station;
 
     private LocalDateTime predictTimeArrival;

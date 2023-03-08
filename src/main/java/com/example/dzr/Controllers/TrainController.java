@@ -36,9 +36,8 @@ public class TrainController {
     }
 
     @GetMapping("/train/get/from/to")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getTrainFromTo(@RequestBody FromToTrainDTO fromToTrainDTO){
-        return null;
+        return ResponseEntity.ok(trainServiceImp.getTrainByDayAndFromTo(fromToTrainDTO.getDay(), fromToTrainDTO.getFrom(), fromToTrainDTO.getTo()));
     }
 
     @PostMapping("/train/add/carriage/{id}")

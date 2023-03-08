@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface TrainService {
 
-    TrainDto saveTrain(TrainCreateDto trainDTO);
+    void saveTrain(TrainCreateDto trainDTO);
 
     TrainDto updateTrain(TrainUpdateDto trainUpdateDto);
 

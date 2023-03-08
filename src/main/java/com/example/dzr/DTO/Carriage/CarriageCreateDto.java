@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CarriageDto {
-
-    private Long id;
+public class CarriageCreateDto {
 
     private Long number;
 
     private Long countPlace;
 
     private Long trainId;
+
+    private Long price;
 }
