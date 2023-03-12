@@ -1,4 +1,4 @@
-package com.example.dzr.DTO;
+package com.example.dzr.DTO.Security;
 
 import lombok.Data;
 

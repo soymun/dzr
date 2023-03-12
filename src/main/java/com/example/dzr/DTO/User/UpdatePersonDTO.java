@@ -1,13 +1,13 @@
-package com.example.dzr.DTO;
+package com.example.dzr.DTO.User;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class CreatePersonDTO {
+public class UpdatePersonDTO {
 
-    private Long userId;
+    private Long id;
 
     private String name;
 
@@ -18,4 +18,6 @@ public class CreatePersonDTO {
     private String pasport;
 
     private Date birthday;
+
+    private Long cart;
 }

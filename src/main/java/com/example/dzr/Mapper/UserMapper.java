@@ -1,6 +1,6 @@
 package com.example.dzr.Mapper;
 
-import com.example.dzr.DTO.UserDto;
+import com.example.dzr.DTO.User.UserDto;
 import com.example.dzr.Entity.User;
 import org.mapstruct.Mapper;
 

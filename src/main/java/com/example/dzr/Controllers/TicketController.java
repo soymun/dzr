@@ -1,37 +1,38 @@
 package com.example.dzr.Controllers;
 
-import com.example.dzr.DTO.AddPersonTicketDTO;
+import com.example.dzr.DTO.Ticket.TicketCreateDto;
 import com.example.dzr.Service.IMP.TicketServiceImp;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class TicketController {
 
     private final TicketServiceImp ticketServiceImp;
 
-    @Autowired
-    public TicketController(TicketServiceImp ticketServiceImp) {
-        this.ticketServiceImp = ticketServiceImp;
+    @PostMapping("/ticket")
+    public ResponseEntity<?> saveTicket(@RequestBody TicketCreateDto ticketCreateDto){
+        ticketServiceImp.saveTicket(ticketCreateDto);
+        return ResponseEntity.status(201).build();
     }
 
-    @PostMapping("/person/ticket")
-    @PreAuthorize("hasAuthority('Commuter')")
-    public ResponseEntity<?> addPersonTicket(AddPersonTicketDTO addPersonTicketDTO){
-        return null;
-    }
-
-    @GetMapping("/ticket/get/all/{id}")
+    @GetMapping("/train/ticket/{id}")
     @PreAuthorize("hasAuthority('Guide')")
     public ResponseEntity<?> getAllTicketByTrainId(@PathVariable Long id){
         return ResponseEntity.ok(ticketServiceImp.getTicketByTrainId(id));
     }
 
-    @DeleteMapping("/ticket/delete/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteTicket(@PathVariable Long id){
+    @GetMapping("/user/ticket/{id}")
+    public ResponseEntity<?> getTicketByUserId(@PathVariable Long id){
+        return ResponseEntity.ok(ticketServiceImp.getTicketByUserId(id));
+    }
 
+    @DeleteMapping("/ticket/{id}")
+    public ResponseEntity<?> deleteTicket(@PathVariable Long id){
+        ticketServiceImp.deleteTicket(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dzr.DTO;
+package com.example.dzr.DTO.User;
 
 import com.example.dzr.Entity.Role;
 import lombok.AllArgsConstructor;
@@ -8,17 +8,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserUpdateDto {
+public class UserDto {
 
     private Long id;
 
-    private Boolean activating;
+    private String email;
+
+    private Role role;
 
     private String uuid;
 
-    private String email;
-
-    private String password;
-
-    private Role role;
+    private Boolean activating;
 }

@@ -1,54 +1,55 @@
 package com.example.dzr.Controllers;
 
 
-import com.example.dzr.DTO.AddCarriage;
-import com.example.dzr.DTO.FromToTrainDTO;
-import com.example.dzr.DTO.StationDTO;
-import com.example.dzr.DTO.TrainDTO;
+import com.example.dzr.DTO.Train.FromToTrainDTO;
+import com.example.dzr.DTO.Train.TrainCreateDto;
+import com.example.dzr.DTO.Train.TrainsByStationDto;
+import com.example.dzr.DTO.Train.TrainUpdateDto;
 import com.example.dzr.Service.IMP.TrainServiceImp;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
+@RequiredArgsConstructor
 public class TrainController {
 
     private final TrainServiceImp trainServiceImp;
 
-    @Autowired
-    public TrainController(TrainServiceImp trainServiceImp) {
-        this.trainServiceImp = trainServiceImp;
+    @PostMapping("/train")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> saveTrain(@RequestBody TrainCreateDto trainDTO){
+        trainServiceImp.saveTrain(trainDTO);
+        return ResponseEntity.status(201).build();
     }
 
-    @PostMapping("/train/create")
+    @PatchMapping("/train")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> addTrain(@RequestBody TrainDTO trainDTO){
-        return null;
+    public ResponseEntity<?> updateTrain(@RequestBody TrainUpdateDto trainDTO){
+        return ResponseEntity.ok(trainServiceImp.updateTrain(trainDTO));
     }
 
     @GetMapping("/train/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getTrainById(@PathVariable Long id){
-        return null;
+        return ResponseEntity.ok(trainServiceImp.getTrainById(id));
     }
 
-    @GetMapping("/train/get/from/to")
-    public ResponseEntity<?> getTrainFromTo(@RequestBody FromToTrainDTO fromToTrainDTO){
+    @DeleteMapping("/train/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> deleteTrain(@PathVariable Long id){
+        trainServiceImp.deleteTrain(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/train/to")
+    public ResponseEntity<?> getTrainFromTo(@RequestBody FromToTrainDTO fromToTrainDTO) {
         return ResponseEntity.ok(trainServiceImp.getTrainByDayAndFromTo(fromToTrainDTO.getDay(), fromToTrainDTO.getFrom(), fromToTrainDTO.getTo()));
     }
 
-    @PostMapping("/train/add/carriage/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> addCarriage(@PathVariable Long id, @RequestBody List<AddCarriage> addCarriage){
-        return null;
-    }
-
-    @PostMapping("/train/add/statison/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> addStation(@PathVariable Long id, @RequestBody List<StationDTO> stationDTOS){
-        return null;
+    @GetMapping("/train/station")
+    public ResponseEntity<?> getTrainFromTo(@RequestBody TrainsByStationDto fromToTrainDTO) {
+        return ResponseEntity.ok(trainServiceImp.getTrainByStationAndDay(fromToTrainDTO.getStationId(), fromToTrainDTO.getDay()));
     }
 }

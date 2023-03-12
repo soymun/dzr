@@ -123,4 +123,13 @@ public class TrainServiceImp implements TrainService {
         );
         return entityManager.createQuery(cq).getResultList();
     }
+
+    @Override
+    public TrainDto getTrainById(Long id) {
+        log.info("Выдача поезда по id {}", id);
+        Train train = trainRepository.findById(id).orElseThrow(() -> {
+            throw new NotFoundException(String.format("Поезд с id %d не найден",id));
+        });
+        return trainMapper.trainToTrainDto(train);
+    }
 }

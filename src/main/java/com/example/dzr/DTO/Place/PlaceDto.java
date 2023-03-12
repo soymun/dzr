@@ -1,9 +1,6 @@
 package com.example.dzr.DTO.Place;
 
-import com.example.dzr.Entity.Carriage;
 import lombok.Data;
-
-import javax.persistence.*;
 
 @Data
 public class PlaceDto {

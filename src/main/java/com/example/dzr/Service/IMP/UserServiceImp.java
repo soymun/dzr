@@ -1,8 +1,8 @@
 package com.example.dzr.Service.IMP;
 
-import com.example.dzr.DTO.RegistrationDTO;
-import com.example.dzr.DTO.UserDto;
-import com.example.dzr.DTO.UserUpdateDto;
+import com.example.dzr.DTO.Security.RegistrationDTO;
+import com.example.dzr.DTO.User.UserDto;
+import com.example.dzr.DTO.User.UserUpdateDto;
 import com.example.dzr.Entity.Role;
 import com.example.dzr.Entity.User;
 import com.example.dzr.Exception.NotFoundException;
@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
